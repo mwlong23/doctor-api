@@ -1,0 +1,21 @@
+{
+  "name": "doctor-lookup",
+  "authors": [
+    "Mitch Long <meechllada@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/mwlong23/doctor-lookup",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "handlebars": "^4.0.11"
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="build/js/vendor.min.js" charset="utf-8"></script>
+    <script src="build/js/app.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <center><h1>BetterDoctor Search</h1></center>
+
+    </div>
+    <div class="container">
+      <form id="search">
+        <div class="form-group category">
+          <label for="category">Search by:</label>
+          <select class="form-control" id="category" name="category">
+              <option value="name">Doctor Name</option>
+              <option value="symptom">Symptom</option>
+          </select>
+          <br>
+          <input id="search-criteria" name="search-criteria" class="form-control" type="text">
+        </div>
+        <button type="submit" class="btn btn-success">Search</button>
+      </form>
+      <br>
+      <br>
+      <div id="content-placeholder"></div>
+        <script id="docs-template" type="text/x-handlebars-template">
+                <h1>Results:</h1>
+                {{#data}}
+                <img src="{{profile.image_url}}"></img>
+                <img src="{{ratings.0.image_url_small}}"></img>
+                <h4>Name: {{profile.first_name}} {{profile.last_name}}, {{profile.title}}</h4>
+                <h4>Title: {{profile.title}}</h4>
+                <h4>About {{profile.first_name}}: {{profile.bio}}</h4>
+                <h4>Practices:</h4>
+                  {{#practices}}
+                    <div>
+                      <h3>{{name}}</h3>
+                      <p>Phone: {{phones.0.number}} </p>
+                      <p>{{visit_address.street}}</p>
+                      <p>{{visit_address.street2}}</p>
+                      <p>{{visit_address.city}}, {{visit_address.state}}, {{visit_address.zip}}</p>
+                      <p>Accepting Patients: {{formatAcceptingPatients accepts_new_patients}}</p>
+                    </div>
+                  {{/practices}}
+                  <br>
+                  <hr>
+                {{/data}}
+                </tbody>
+            </table>
+        </script>
+    </div>
+  </body>
+</html>

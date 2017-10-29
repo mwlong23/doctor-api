@@ -13,6 +13,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // import { apiKey } from './../.env';
+
+
 var DoctorSearch = exports.DoctorSearch = function () {
   function DoctorSearch() {
     _classCallCheck(this, DoctorSearch);
@@ -55,11 +57,12 @@ $(document).ready(function () {
     var category = $('#category').val();
     var searchCriteria = $('#search-criteria').val();
 
-    debugger;
-
     var apiKey = '3cf0ffbb88fae132f82086fd2704ace2';
 
-    var resource_url = 'https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=10&name=John&user_key=' + apiKey;
+    var resource_url = 'https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=10&name=' + searchCriteria + '&user_key=' + apiKey;
+
+    var symptom_url = 'https://api.betterdoctor.com/2016-03-01/conditions?name=stomach%20ache&limit=10&user_key=' + apiKey;
+    debugger;
 
     $.get(resource_url, function (data) {
       // data: { meta: {<metadata>}, data: {<array[Practice]>} }
@@ -67,6 +70,7 @@ $(document).ready(function () {
       document.getElementById('content-placeholder').innerHTML = template(data);
     });
 
+    // HanldeBars helpers for data formatting
     Handlebars.registerHelper('formatAcceptingPatients', function (acceptingPatients) {
       if (acceptingPatients === true) {
         return "Yes";

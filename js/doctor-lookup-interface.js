@@ -12,19 +12,24 @@ $(document).ready(function() {
     let category = $('#category').val();
     let searchCriteria = $('#search-criteria').val();
 
-    debugger;
+
 
     let apiKey = '3cf0ffbb88fae132f82086fd2704ace2';
 
-    var resource_url = 'https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=10&name=John&user_key=' + apiKey;
+    let resource_url = `https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=10&name=${searchCriteria}&user_key=${apiKey}`;
 
+    let symptom_url = `https://api.betterdoctor.com/2016-03-01/conditions?name=stomach%20ache&limit=10&user_key=${apiKey}`
+    debugger;
 
     $.get(resource_url, function (data) {
     // data: { meta: {<metadata>}, data: {<array[Practice]>} }
-    var template = Handlebars.compile(document.getElementById('docs-template').innerHTML);
+    let template = Handlebars.compile(document.getElementById('docs-template').innerHTML);
     document.getElementById('content-placeholder').innerHTML = template(data);
     });
 
+
+
+    // HanldeBars helpers for data formatting
     Handlebars.registerHelper('formatAcceptingPatients', function(acceptingPatients) {
       if(acceptingPatients === true){
         return "Yes";

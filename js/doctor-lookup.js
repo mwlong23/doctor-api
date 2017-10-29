@@ -1,4 +1,6 @@
 // import { apiKey } from './../.env';
+
+
 export class DoctorSearch{
   search(searchTerm, category){
     let apiKey = '3cf0ffbb88fae132f82086fd2704ace2';

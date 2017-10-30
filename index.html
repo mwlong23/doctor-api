@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="/css/styles.css">
     <script src="build/js/vendor.min.js" charset="utf-8"></script>
     <script src="build/js/app.js" charset="utf-8"></script>
   </head>
@@ -26,29 +26,40 @@
       </form>
       <br>
       <br>
+      <div id="blank-search-field">
+        <h1>Please enter a search term</h1>
+      </div>
       <div id="content-placeholder"></div>
         <script id="docs-template" type="text/x-handlebars-template">
-                <h1>Results:</h1>
-                {{#data}}
-                <img src="{{profile.image_url}}"></img>
-                <img src="{{ratings.0.image_url_small}}"></img>
-                <h4>Name: {{profile.first_name}} {{profile.last_name}}, {{profile.title}}</h4>
-                <h4>Title: {{profile.title}}</h4>
-                <h4>About {{profile.first_name}}: {{profile.bio}}</h4>
-                <h4>Practices:</h4>
-                  {{#practices}}
-                    <div>
-                      <h3>{{name}}</h3>
-                      <p>Phone: {{formatPhoneNumber phones.0.number}} </p>
-                      <p>{{visit_address.street}}</p>
-                      <p>{{visit_address.street2}}</p>
-                      <p>{{visit_address.city}}, {{visit_address.state}}, {{visit_address.zip}}</p>
-                      <p>Accepting Patients: {{formatAcceptingPatients accepts_new_patients}}</p>
-                    </div>
-                  {{/practices}}
+
+                {{#if data}}
+                  {{#data}}
+                  <h1>Results:</h1>
                   <br>
-                  <hr>
-                {{/data}}
+                  <br>
+                  <img src="{{profile.image_url}}"></img>
+                  <img src="{{ratings.0.image_url_small}}"></img>
+                  <h4>Name: {{profile.first_name}} {{profile.last_name}}, {{profile.title}}</h4>
+                  <h4>Title: {{profile.title}}</h4>
+                  <h4>About {{profile.first_name}}:</h4>
+                  <p> {{profile.bio}}</p>
+                  <h4>Practices:</h4>
+                    {{#practices}}
+                      <div>
+                        <h3>{{name}}</h3>
+                        <p>Phone: {{formatPhoneNumber phones.0.number}} </p>
+                        <p>{{visit_address.street}}</p>
+                        <p>{{visit_address.street2}}</p>
+                        <p>{{visit_address.city}}, {{visit_address.state}}, {{visit_address.zip}}</p>
+                        <p>Accepting Patients: {{formatAcceptingPatients accepts_new_patients}}</p>
+                      </div>
+                    {{/practices}}
+                    <br>
+                    <hr>
+                  {{/data}}
+                {{else}}
+                  <h1>No Results Found</h1>
+                {{/if}}
                 </tbody>
             </table>
         </script>

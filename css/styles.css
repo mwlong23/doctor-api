@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Days+One|Open+Sans');
 body {
-  background-color: blue;
+  background-color: #BEC7D0;
+}
+
+.jumbotron {
+
+  background-color: #4A6B8A;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.jumpotron h1 {
+    font-family: 'Days One', sans-serif;
+}
+
+
+#blank-search-field{
+  display: none;
+  color: red;
 }

@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-const apiKey = '3cf0ffbb88fae132f82086fd2704ace2';
+exports.apiKey = '3cf0ffbb88fae132f82086fd2704ace2';
 
 },{}],2:[function(require,module,exports){
 'use strict';
@@ -12,8 +12,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// import { apiKey } from './../.env';
-
+var apiKey = require('./../.env').apiKey;
 
 var DoctorSearch = exports.DoctorSearch = function () {
   function DoctorSearch() {
@@ -22,33 +21,26 @@ var DoctorSearch = exports.DoctorSearch = function () {
 
   _createClass(DoctorSearch, [{
     key: 'search',
-    value: function search(searchTerm, category) {
-      var apiKey = '3cf0ffbb88fae132f82086fd2704ace2';
-      return $.get('https://api.betterdoctor.com/2016-03-01/doctors?location=37.773,-122.413,100&skip=2&limit=10&user_key=' + apiKey);
-    }
-  }, {
-    key: 'hello',
-    value: function hello(someParameter) {
-      console.log('hello, workd. hello, ' + someParameter);
-    }
-  }, {
-    key: 'find',
-    value: function find(url) {
-      return $.get(url);
+    value: function search(baseUrl, category, doctorName) {
+      var url = baseUrl + '&' + category + '=' + doctorName;
+
+      return $.get(url).then(function (data) {
+        var template = Handlebars.compile(document.getElementById('docs-template').innerHTML);
+        document.getElementById('content-placeholder').innerHTML = template(data);
+      });
     }
   }]);
 
   return DoctorSearch;
 }();
 
-},{}],3:[function(require,module,exports){
+},{"./../.env":1}],3:[function(require,module,exports){
 'use strict';
 
 var _doctorLookup = require('./../js/doctor-lookup.js');
 
 var apiKey = require('./../.env').apiKey;
 
-var doctorSearch = new _doctorLookup.DoctorSearch();
 
 $(document).ready(function () {
   $('#search').submit(function (event) {
@@ -56,19 +48,14 @@ $(document).ready(function () {
 
     var category = $('#category').val();
     var searchCriteria = $('#search-criteria').val();
+    $('#search-criteria').val("");
 
-    var apiKey = '3cf0ffbb88fae132f82086fd2704ace2';
+    var baseUrl = 'https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=10&user_key=' + apiKey;
 
-    var resource_url = 'https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=10&name=' + searchCriteria + '&user_key=' + apiKey;
+    var promise = new _doctorLookup.DoctorSearch();
+    var searchResults = promise.search(baseUrl, category, searchCriteria);
+    // debugger;
 
-    var symptom_url = 'https://api.betterdoctor.com/2016-03-01/conditions?name=stomach%20ache&limit=10&user_key=' + apiKey;
-    debugger;
-
-    $.get(resource_url, function (data) {
-      // data: { meta: {<metadata>}, data: {<array[Practice]>} }
-      var template = Handlebars.compile(document.getElementById('docs-template').innerHTML);
-      document.getElementById('content-placeholder').innerHTML = template(data);
-    });
 
     // HanldeBars helpers for data formatting
     Handlebars.registerHelper('formatAcceptingPatients', function (acceptingPatients) {
@@ -78,22 +65,15 @@ $(document).ready(function () {
         return "Not at this time.";
       }
     });
+
+    Handlebars.registerHelper('formatPhoneNumber', function (phoneNumber) {
+      phoneNumber = phoneNumber.toString();
+      var firsThree = phoneNumber.slice(0, 3);
+      var middleDigits = phoneNumber.slice(3, 6);
+      var lastFour = phoneNumber.slice(-4);
+      return '(' + firsThree + ') ' + middleDigits + '-' + lastFour;
+    });
   });
 });
-
-// let results = $.ajax({
-//   url:`https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=1&user_key=3cf0ffbb88fae132f82086fd2704ace2&first_name=bill`,
-//   type: 'GET',
-//   data: {
-//     format: 'json'
-//   },
-//   success: function(response){
-//     $('#showResults').text(`Results: ${response.data}`)
-//   },
-//   error: function () {
-//     $('#errors').text("There were errors processing your request, please try again")
-//   }
-// })
-// debugger;
 
 },{"./../.env":1,"./../js/doctor-lookup.js":2}]},{},[3]);

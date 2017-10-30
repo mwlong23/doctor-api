@@ -1,9 +1,5 @@
 const apiKey = require('./../.env').apiKey
-
-
 import { DoctorSearch } from './../js/doctor-lookup.js';
-let doctorSearch = new DoctorSearch();
-
 
 $(document).ready(function() {
   $('#search').submit(function(event){
@@ -11,22 +7,13 @@ $(document).ready(function() {
 
     let category = $('#category').val();
     let searchCriteria = $('#search-criteria').val();
+    $('#search-criteria').val("");
 
+    let baseUrl = `https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=10&user_key=${apiKey}`;
 
-
-    let apiKey = '3cf0ffbb88fae132f82086fd2704ace2';
-
-    let resource_url = `https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=10&name=${searchCriteria}&user_key=${apiKey}`;
-
-    let symptom_url = `https://api.betterdoctor.com/2016-03-01/conditions?name=stomach%20ache&limit=10&user_key=${apiKey}`
-    debugger;
-
-    $.get(resource_url, function (data) {
-    // data: { meta: {<metadata>}, data: {<array[Practice]>} }
-    let template = Handlebars.compile(document.getElementById('docs-template').innerHTML);
-    document.getElementById('content-placeholder').innerHTML = template(data);
-    });
-
+    let promise = new DoctorSearch
+    let searchResults = promise.search(baseUrl, category, searchCriteria)
+    // debugger;
 
 
     // HanldeBars helpers for data formatting
@@ -38,24 +25,13 @@ $(document).ready(function() {
       }
     });
 
+    Handlebars.registerHelper('formatPhoneNumber', function(phoneNumber) {
+      phoneNumber  = phoneNumber.toString();
+      let firsThree = phoneNumber.slice(0,3)
+      let middleDigits = phoneNumber.slice(3,6)
+      let lastFour = phoneNumber.slice(-4)
+      return `(${firsThree}) ${middleDigits}-${lastFour}`;
+    });
+
   });
 });
-
-
-
-
-
-// let results = $.ajax({
-//   url:`https://api.betterdoctor.com/2016-03-01/doctors?location=47.606,-122.332,10&skip=2&limit=1&user_key=3cf0ffbb88fae132f82086fd2704ace2&first_name=bill`,
-//   type: 'GET',
-//   data: {
-//     format: 'json'
-//   },
-//   success: function(response){
-//     $('#showResults').text(`Results: ${response.data}`)
-//   },
-//   error: function () {
-//     $('#errors').text("There were errors processing your request, please try again")
-//   }
-// })
-// debugger;

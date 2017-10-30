@@ -2,36 +2,34 @@
 
 #### _{Brief description of application}, {Date of current version}_
 
-#### By _**{List of contributors}**_
+#### By _**Mitchell Long**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_'Your Next Doctor' uses the betterDoctor api to return a list of doctors in the Seattle Area. Users can search by Doctor name or a symptom and receive a list of local Physicians._
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+* _Clone [this](https://github.com/mwlong23/doctor-api) repository by running `$ git clone https://github.com/mwlong23/doctor-api` in your favorite terminal application._
+* _Run the command `$ gulp build` in the root direcory and `$ gulp serve' to start the local server_
+ * _A window should open in your favorite browser_
+ * _Run your search!_
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
+_At the moment search results do not remove duplicate addresses. This is a bit annoying and over populates some profiles with the same addresses. Should you discover additional bugs please contact [me](mailto:meechllada@gmail.com)._
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+_Feel free to contact [the creator](mailto:meechllada@gmail.com) with any questions, comments or concerns._
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+_Your Next Doctor uses NodeJs, Gulp, Jquery and HanldeBarsJs_
 
 ### License
 
-*{Determine the license under which this application can be used.  See below for more details on licensing.}*
+*This application is covered under the MIT license*
 
 Copyright (c) 2017 **_Mitch Long_**

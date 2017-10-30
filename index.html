@@ -17,7 +17,7 @@
           <label for="category">Search by:</label>
           <select class="form-control" id="category" name="category">
               <option value="name">Doctor Name</option>
-              <option value="symptom">Symptom</option>
+              <option value="query">Symptom</option>
           </select>
           <br>
           <input id="search-criteria" name="search-criteria" class="form-control" type="text">
@@ -31,12 +31,11 @@
       </div>
       <div id="content-placeholder"></div>
         <script id="docs-template" type="text/x-handlebars-template">
-
                 {{#if data}}
+                <h1>Results:</h1>
+                <br>
+                <br>
                   {{#data}}
-                  <h1>Results:</h1>
-                  <br>
-                  <br>
                   <img src="{{profile.image_url}}"></img>
                   <img src="{{ratings.0.image_url_small}}"></img>
                   <h4>Name: {{profile.first_name}} {{profile.last_name}}, {{profile.title}}</h4>

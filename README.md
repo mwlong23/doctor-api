@@ -1,6 +1,6 @@
 # _Your Next Doctor_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _Find Local Physicians, October 2017_
 
 #### By _**Mitchell Long**_
 

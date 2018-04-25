@@ -7,6 +7,7 @@ var utilities = require('gulp-util');
 var del = require('del');
 var jshint = require('gulp-jshint');
 var babelify = require('babelify');
+var connect = require('gulp-connect');
 var lib = require('bower-files')({
   overrides: {
     bootstrap: {
@@ -101,9 +102,10 @@ gulp.task('bowerBuild', ['bower'], function () {
 });
 
 gulp.task('serveprod', function() {
-  connect.server({
-    root: ['./build/js/vendor.min.js'],
-    port: process.env.PORT || 5000, // localhost:5000
-    livereload: false
-  });
-});
+
+//   connect.server({
+//     root: ['/Users/meechll/Desktop/doctor-api/index.html'],
+//     port: process.env.PORT || 5000, // localhost:5000
+//     livereload: false
+//   });
+// });

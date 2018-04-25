@@ -99,3 +99,11 @@ gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function () {
 gulp.task('bowerBuild', ['bower'], function () {
   browserSync.reload();
 });
+
+gulp.task('serveprod', function() {
+  connect.server({
+    root: ['./build/js/vendor.min.js'],
+    port: process.env.PORT || 5000, // localhost:5000
+    livereload: false
+  });
+});

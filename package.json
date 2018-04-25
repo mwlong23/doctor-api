@@ -28,7 +28,8 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-jquery": "^0.2.2",
     "vinyl-source-stream": "^1.1.2",
-    "watchify": "^3.11.0"
+    "watchify": "^3.11.0",
+    "bower-files": "^4.0.0"
   },
   "devDependencies": {
     "bower-files": "^4.0.0",

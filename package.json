@@ -39,8 +39,8 @@
   },
   "scripts": {
     "test": "nyc karma start karma.conf.js istanbul",
-    "postinstall": "npm install gulp &&  bower install && gulp build ",
-    "start": "gulp serve"
+    "postinstall": "npm install gulp &&  bower install && gulp build && gulp serveprod",
+    "start": "gulp serveprod"
   },
   "author": "",
   "license": "ISC"

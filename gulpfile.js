@@ -101,11 +101,11 @@ gulp.task('bowerBuild', ['bower'], function () {
   browserSync.reload();
 });
 
-// gulp.task('serveprod', function() {
+gulp.task('serveprod', function() {
 
-//   connect.server({
-//     root: ['/Users/meechll/Desktop/doctor-api/index.html'],
-//     port: process.env.PORT || 5000, // localhost:5000
-//     livereload: false
-//   });
-// });
+  connect.server({
+    root: ['.', '.tmp'],
+    port: process.env.PORT || 5000, // localhost:5000
+    livereload: false
+  });
+});

@@ -1,5 +1,2 @@
-.env
-node_modules
-bower_componentsnode_modules
-npm-debug.log
-
+bower_components
+bower_components
